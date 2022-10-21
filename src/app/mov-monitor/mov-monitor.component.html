@@ -1,0 +1,42 @@
+<div>
+  <mat-form-field appearance="fill">
+    <mat-label>Sampling Rate:</mat-label>
+    <mat-select aria-label="Sets the sampling rate of the movement data">
+      <mat-option value="40">26 Hz</mat-option>
+      <mat-option value="20">52 Hz</mat-option>
+      <mat-option value="10">104 Hz</mat-option>
+      <mat-option value="5">208 Hz</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <span class="spacer"></span>
+  <button mat-icon-button aria-label="Starts the streaming of the ECG voltages" matTooltip="Start Streaming">
+    <mat-icon>play_arrow</mat-icon>
+  </button>
+  <button mat-icon-button aria-label="Stops the streaming of the ECG voltages" matTooltip="Stop Streaming">
+    <mat-icon>stop</mat-icon>
+  </button>
+</div>
+<div>
+  <app-graph caption="Acceleration Graph" [showLegend]="true" [data]="accData"></app-graph>
+</div>
+<div>
+  <app-graph caption="Gyroscope Graph" [showLegend]="true" [data]="gyrData"></app-graph>
+</div>
+<div>
+  <app-graph caption="Magnetic Field Graph" [showLegend]="true" [data]="magData"></app-graph>
+</div>
+<div>
+  <span>Recording:</span>
+  <button mat-icon-button aria-label="Starts the recording of the ECG voltages" matTooltip="Start Recording">
+    <mat-icon>fiber_manual_record</mat-icon>
+  </button>
+  <button mat-icon-button aria-label="Stops the recording of the ECG voltages" matTooltip="Stop Recording">
+    <mat-icon>stop</mat-icon>
+  </button>
+  <button mat-icon-button aria-label="Downloads the recording of the ECG voltages" matTooltip="Download" disabled>
+    <mat-icon>file_download</mat-icon>
+  </button>
+  <span class="spacer"></span>
+  <mat-icon>fiber_manual_record</mat-icon>
+  <span>0:01:23 h</span>
+</div>

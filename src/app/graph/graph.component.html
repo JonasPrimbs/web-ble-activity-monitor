@@ -1,0 +1,17 @@
+<figure>
+  <figcaption *ngIf="showCaption">{{ caption }}</figcaption>
+  <ul *ngIf="showLatestValue">
+    <ng-container *ngFor="let set of data">
+      <li *ngIf="set.values.length > 0">
+        <span>{{ set.name }}:</span>
+        <span>{{ set.values[set.values.length - 1].y }}</span>
+      </li>
+    </ng-container>
+  </ul>
+  <canvas id="graph"></canvas>
+  <aside *ngIf="showLegend">
+    <ul>
+      <li *ngFor="let series of data">{{ series.name }}</li>
+    </ul>
+  </aside>
+</figure>

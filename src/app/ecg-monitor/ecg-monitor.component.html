@@ -1,0 +1,78 @@
+<div class="bar">
+  <mat-form-field appearance="fill">
+    <mat-label>Sampling Rate:</mat-label>
+    <mat-select [disabled]="activityService === undefined || ecgInterval === undefined"
+                [value]="ecgInterval"
+                (selectionChange)="onIntervalChange($event)"
+                aria-label="Sets the sampling rate of the ECG voltages">
+      <mat-option [value]="10">100 Hz</mat-option>
+      <mat-option [value]="8">125 Hz</mat-option>
+      <mat-option [value]="4">250 Hz</mat-option>
+      <mat-option [value]="2">500 Hz</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <span class="spacer"></span>
+
+  <button *ngIf="ecgDataCharacteristic === undefined"
+          mat-icon-button
+          [disabled]="activityService === undefined"
+          (click)="startStreaming()"
+          aria-label="Starts the streaming of the ECG voltages"
+          matTooltip="Start Streaming">
+    <mat-icon>play_arrow</mat-icon>
+  </button>
+  <button *ngIf="ecgDataCharacteristic !== undefined"
+          mat-icon-button
+          [disabled]="activityService === undefined"
+          (click)="stopStreaming()"
+          aria-label="Stops the streaming of the ECG voltages"
+          matTooltip="Stop Streaming">
+    <mat-icon>stop</mat-icon>
+  </button>
+</div>
+
+<div>
+  <app-graph caption="ECG Graph" [data]="[ecgData]"></app-graph>
+</div>
+
+<div class="bar">
+  <span>Recording:</span>
+  <button *ngIf="!isRecording"
+          mat-icon-button
+          (click)="startRecording()"
+          aria-label="Starts the recording of the ECG voltages"
+          matTooltip="Start Recording">
+    <mat-icon>fiber_manual_record</mat-icon>
+  </button>
+  <button *ngIf="isRecording"
+          mat-icon-button
+          (click)="stopRecording()"
+          aria-label="Stops the recording of the ECG voltages"
+          matTooltip="Stop Recording">
+    <mat-icon>stop</mat-icon>
+  </button>
+
+  <button mat-icon-button
+          [disabled]="recording.length === 0"
+          (click)="download()"
+          aria-label="Downloads the recording of the ECG voltages"
+          matTooltip="Download">
+    <mat-icon>file_download</mat-icon>
+  </button>
+
+  <button mat-icon-button
+          [disabled]="recording.length === 0"
+          [cdkCopyToClipboard]="recordingString"
+          (click)="copyToClipboard()"
+          aria-label="Copies the ECG voltages to the clipboard"
+          matTooltip="Copy">
+    <mat-icon>content_copy</mat-icon>
+  </button>
+
+  <span class="spacer"></span>
+
+  <span *ngIf="recording.length > 0">
+    {{ recordingDuration | date:'h:mm:ss':'+0000' }} h
+  </span>
+</div>

@@ -1,0 +1,61 @@
+<header>
+  <mat-toolbar color="primary" class="mat-elevation-z4">
+    <mat-toolbar-row>
+      <span>Activity Monitor</span>
+      <span class="spacer"></span>
+      <span *ngIf="sensor === undefined">Not connected</span>
+      <span *ngIf="sensor !== undefined">{{ sensor.name ?? 'unknown sensor' }}</span>
+      <button *ngIf="sensor === undefined" mat-icon-button aria-label="Connects to the sensor" matTooltip="Connect" (click)="connectSensor()">
+        <mat-icon>error</mat-icon>
+      </button>
+      <button *ngIf="sensor !== undefined" mat-icon-button aria-label="Disconnects from the sensor" matTooltip="Disconnect" (click)="disconnectSensor()">
+        <mat-icon>sensors</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</header>
+
+<main>
+  <article *ngIf="activityService === undefined" class="info-page">
+    <section>
+      <mat-icon class="info-icon">link_off</mat-icon>
+      <br>
+      <span>Connect the sensor first</span>
+    </section>
+  </article>
+  <article *ngIf="activityService !== undefined">
+    <mat-accordion multi>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            ECG
+          </mat-panel-title>
+          <mat-panel-description>
+            Monitor electrocardiograph
+            <mat-icon>monitor_heart</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <section>
+          <app-ecg-monitor [activityService]="activityService"></app-ecg-monitor>
+        </section>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Movement
+          </mat-panel-title>
+          <mat-panel-description>
+            Monitor movement
+            <mat-icon>directions_run</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <section>
+          <app-mov-monitor [activityService]="activityService"></app-mov-monitor>
+        </section>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </article>
+</main>

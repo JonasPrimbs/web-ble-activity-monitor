@@ -1,0 +1,31 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+header {
+  z-index: 100;
+}
+main {
+  overflow: auto;
+  height: 100%;
+}
+
+.mat-accordion .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info-page {
+  height: 100%;
+}
+.info-page section {
+  text-align: center;
+}
+.info-icon {
+  font-size: 5em;
+  height: 1em;
+  width: 1em;
+  margin: 12px;
+}
