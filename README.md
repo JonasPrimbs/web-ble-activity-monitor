@@ -34,7 +34,7 @@ npm install -g @angular/cli
 
 ### Build the App
 
-Run the following command to build the app to `/build`:
+Run the following command to build the app to `/dist/web-ble-activity-monitor`:
 
 ```bash
 ng build
