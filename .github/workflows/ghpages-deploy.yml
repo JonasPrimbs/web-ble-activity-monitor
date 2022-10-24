@@ -40,4 +40,4 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
-          folder: deploy_dist/web-ble-activity-monitor
+          folder: 'deploy_dist/web-ble-activity-monitor'
