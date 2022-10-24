@@ -21,7 +21,7 @@ jobs:
       - name: Build
         run: npm run build:ci
       - name: Archive build
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         with:
           name: deploy_dist
           path: dist
@@ -30,9 +30,9 @@ jobs:
     needs: build
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
       - name: Download build
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v3
         with:
           name: deploy_dist
       - name: Deploy to GitHub Pages
